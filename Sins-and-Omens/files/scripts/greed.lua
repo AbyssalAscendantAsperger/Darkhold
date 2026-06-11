@@ -77,8 +77,8 @@ end
 local function GetCurrentHP(entity)
 	local dmg = EntityGetFirstComponent(entity, "DamageModelComponent")
 	if dmg then
-		local hp = GetValue(dmg, "hp")
-		local max_hp = GetValue(dmg, "max_hp")
+		local hp = tonumber(GetValue(dmg, "hp"))
+		local max_hp = tonumber(GetValue(dmg, "max_hp"))
 		return hp, max_hp, dmg
 	end
 	return nil, nil, nil
