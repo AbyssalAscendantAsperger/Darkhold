@@ -14,3 +14,10 @@ ends, the more time I have to think and add better new perks ;))))
 If people want, I will add detailed explanations for each perk. For now, I
 feel they are quite simple and easy to understand through their in-game
 descriptions.
+
+<a href="https://github.com/AbyssalAscendantAsperger/Darkhold/releases/latest">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/notice_dark.svg">
+  <img src="assets/notice_light.svg" alt="">
+</picture>
+</a>
