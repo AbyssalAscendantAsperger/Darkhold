@@ -4,6 +4,8 @@ perk_greed,GREED,,,,,,,,,,,,,
 perkdesc_greed,Gold to 1% HP per second,,,,,,,,,,,,,
 perk_sloth,SLOTH,,,,,,,,,,,,,
 perkdesc_sloth,Hold ALT to phase through walls and scout,,,,,,,,,,,,,
+perk_wrath,WRATH,,,,,,,,,,,,,
+perkdesc_wrath,Return all damage to your attackers - but rage leaves scars,,,,,,,,,,,,,
 ]]
 translations = translations:gsub("\r", "")
 ModTextFileSetContent("data/translations/common.csv", translations)
@@ -14,6 +16,7 @@ ModLuaFileAppend("data/scripts/perks/perk_list.lua", "mods/Sins-and-Omens/files/
 local PERK_MODULES = {
 	dofile_once("mods/Sins-and-Omens/files/scripts/greed.lua"),
 	dofile_once("mods/Sins-and-Omens/files/scripts/sloth.lua"),
+	dofile_once("mods/Sins-and-Omens/files/scripts/wrath.lua"),
 }
 
 function OnPlayerSpawned(player_entity)
