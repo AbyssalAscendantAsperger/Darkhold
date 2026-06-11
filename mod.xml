@@ -1,0 +1,6 @@
+<Mod
+    name="Sins and Omens"
+    description="A growing perk pack of sins and blessings. GREED: turn gold into health. SLOTH: hold ALT to phase through walls and scout."
+    request_no_api_restrictions="0"
+    is_gameplay_mod="1" >
+</Mod>
