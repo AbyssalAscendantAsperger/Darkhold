@@ -23,9 +23,24 @@ jobs:
         run: |
           test -f "${MOD_FOLDER}/mod.xml" || { echo "ERROR: ${MOD_FOLDER}/mod.xml not found - did the mod folder get renamed?"; exit 1; }
 
-      - name: Zip mod folder
+      - name: Zip mod folder (player files only, dev tools excluded)
         run: |
-          zip -r "${MOD_FOLDER}.zip" "${MOD_FOLDER}"
+          zip -r "${MOD_FOLDER}.zip" "${MOD_FOLDER}" \
+            -x "${MOD_FOLDER}/tools/*" \
+            -x "${MOD_FOLDER}/None" \
+            -x "${MOD_FOLDER}/.luarc.json" \
+            -x "${MOD_FOLDER}/.gitignore" \
+            -x "${MOD_FOLDER}/_preview_*" \
+            -x "${MOD_FOLDER}/artwork_*"
+          echo "--- Zip contents ---"
+          unzip -l "${MOD_FOLDER}.zip"
+
+      - name: Sanity check zip
+        run: |
+          if unzip -l "${MOD_FOLDER}.zip" | grep -q "tools/"; then
+            echo "ERROR: tools/ leaked into the zip!"; exit 1
+          fi
+          unzip -l "${MOD_FOLDER}.zip" | grep -q "init.lua" || { echo "ERROR: init.lua missing from zip!"; exit 1; }
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
