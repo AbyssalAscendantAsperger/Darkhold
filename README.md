@@ -4,7 +4,6 @@
 
 Seven perks. Seven bargains. Seven ways to lose.
 
-This README tells you exactly what the code does — no more, no less. The sins lie to you in the game. They will not lie to you here. Read carefully, because every number below was taken from the scripts themselves, and the scripts do not care what you *thought* you agreed to.
 
 ---
 
