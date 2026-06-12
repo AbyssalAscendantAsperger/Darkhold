@@ -10,7 +10,11 @@ local hp_before_flight = nil
 local debt = 0
 local prev_fly_time = nil
 local ground_frames = 0
+local recharge_frames = 0
+local stagnant_frames = 0
 local GROUND_FRAMES_REQUIRED = 5
+local RECHARGE_FRAMES_REQUIRED = 5
+local STAGNANT_FRAMES_REQUIRED = 300
 
 local function GetPlayer()
 	local players = EntityGetWithTag("player_unit")
@@ -45,6 +49,8 @@ local function ResetToGrounded()
 	debt = 0
 	prev_fly_time = nil
 	ground_frames = 0
+	recharge_frames = 0
+	stagnant_frames = 0
 	SaveState()
 end
 
@@ -100,7 +106,28 @@ function M.OnWorldPostUpdate()
 			ground_frames = 0
 		end
 
-		if ground_frames >= GROUND_FRAMES_REQUIRED then
+		-- Anti-exploit (spider legs / wall-cling / hover):
+		-- levitation RECHARGING while airborne means the player is standing
+		-- on something the game doesn't call ground (walls). Treat as landed.
+		if prev_fly_time ~= nil and fly_time > prev_fly_time + 0.0001 then
+			recharge_frames = recharge_frames + 1
+		else
+			recharge_frames = 0
+		end
+
+		-- levitation frozen (not draining, not on ground) for too long:
+		-- perched/hovering by other means. The fall is only delayed.
+		if prev_fly_time ~= nil and math.abs(fly_time - prev_fly_time) <= 0.0001 then
+			stagnant_frames = stagnant_frames + 1
+		else
+			stagnant_frames = 0
+		end
+
+		local landed = ground_frames >= GROUND_FRAMES_REQUIRED
+			or recharge_frames >= RECHARGE_FRAMES_REQUIRED
+			or stagnant_frames >= STAGNANT_FRAMES_REQUIRED
+
+		if landed then
 			local final_hp = (hp_before_flight or max_hp) - debt
 			if final_hp <= 0 then
 				ComponentSetValue2(dmg, "hp", 0.001)
