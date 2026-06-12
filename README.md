@@ -2,22 +2,13 @@
 
 ![Sins and Omens](https://raw.githubusercontent.com/AbyssalAscendantAsperger/Darkhold/main/mod.jpg)
 
-I merged two features I had previously written into a single perk pack, and I will keep adding more perks whenever I come up with new ideas.
+Seven perks. Seven bargains. Seven ways to lose.
 
-If you want these features available right from the start of a run, look for my standalone mods that turn them into default abilities. As for now, I feel they are way too OP to stand alone as separate "useful" mods. So I turned them into perks instead (so you can die faster). Honestly, the sooner a Noita run ends, the more time I have to think and add better new perks ;))))
-
-If people want, I will add detailed explanations for each perk. For now, I feel they are quite simple and easy to understand through their in-game descriptions.
-
-<a href="https://github.com/AbyssalAscendantAsperger/Darkhold/releases/latest">
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/notice_dark.svg">
-  <img src="assets/notice_light.svg" alt="">
-</picture>
-</a>
+This README tells you exactly what the code does — no more, no less. The sins lie to you in the game. They will not lie to you here. Read carefully, because every number below was taken from the scripts themselves, and the scripts do not care what you *thought* you agreed to.
 
 ---
 
-## The Seven Sins — What They Are and What They Cost
+## The Seven Sins — What They Are and What They Actually Cost
 
 Every sin gives you something. Every sin takes something back. That's the deal. Noita doesn't do charity, and neither do these perks.
 
@@ -25,103 +16,122 @@ If you're the kind of player who reads perk descriptions and thinks *"this seems
 
 ---
 
-### 🟡 GREED — *Gold to 1% HP per second*
+### 🟡 GREED — *Gold to HP, drip by drip*
 
 > *"The miser counts his coins in a burning house and wonders why the walls are warm."*
 
-Your gold is no longer a number on a screen. It is blood. Literally. Every coin you hoard can be converted into flesh — 1 gold buys you a sliver of HP, tick by tick, drip by drip.
+Your gold is no longer a number on a screen. It is blood. One coin buys you **0.04 HP** per tick. Not a flood — a drip. An IV line made of currency.
 
-But here's the thing about greed that the gospels never mention: **the richer you get, the slower the healing becomes.** Under 1,000 gold? You heal every half-second. Over 100,000? Every 3 seconds. Past 2 million? Your gold is worthless. The market has crashed. The body refuses the currency.
+**The richer you get, the slower the drip:**
 
-And if you're wounded — really wounded, missing more than 2% of your max HP — the system kicks into turbo. It spends big chunks of gold to burst-heal you back up. Sounds great until you realize you just burned 500 gold in one tick because a Hiisi shot you in the knee.
+| Your fortune | Seconds between heals |
+|---|---|
+| under 1,000 | 0.5 |
+| under 5,000 | 0.8 |
+| 5,000 → 100,000 | 0.8 → 3.0 |
+| 100,000 → 1,000,000 | 3.0 → 5.0 |
+| 1,000,000 → 2,000,000 | 5.0 → 10.0 |
+| 2,000,000 and beyond | **never** |
 
-There's a grace period too: 1 second after taking damage, the healing won't touch you. Because even mercy has a cooldown in Noita.
+Past two million, the market crashes. The body refuses the currency. Your wounds become permanent and your wallet becomes a museum.
 
-**Stackable up to 10x.** Each stack reduces the stability window — the number of frames your HP must hold steady before healing begins. At 10 stacks, there is no window. The gold flows the moment you stop bleeding. Which is either a blessing or a death sentence, depending on how much gold you have left.
+**The turbo clause:** if you are missing more than 2% of your max HP, the system stops sipping and starts gulping. Each tick it heals **1% of your max HP** at once — and bills you for every drop, at the same exchange rate. With 100 max HP, that's 25 gold per tick. With 1,000 max HP, that's 250. Getting shot in the knee by a Hiisi has never been this expensive.
 
-**The philosophy:** Greed is not about having more. It is about the terror of having less. The truly greedy do not fear poverty — they fear the moment their wealth stops working. And in Noita, that moment comes at 2,000,000 gold, when the coins in your pocket become decorative metal and the wounds on your body become permanent.
+**The grace period:** for one full second after your HP drops, the gold does not flow. And your HP must then hold steady — the **stability window** — before healing resumes. The window starts at 10 ticks. **Each stack of Greed removes one tick. At 10 stacks, there is no window.** The gold flows the instant you stop bleeding, which is either a blessing or a bankruptcy, depending on what's left in your pocket.
+
+**The fine print nobody reads:** if something in the world suppresses healing — a curse, a hostile effect — and the gold is spent but the flesh refuses to knit, the system notices the fraud and **shuts the vault for 5 seconds**. Greed does not pay twice for goods not delivered.
+
+**Stackable up to 10x.**
+
+**The philosophy:** Greed is not about having more. It is about the terror of having less. The truly greedy do not fear poverty — they fear the moment their wealth stops working. In Noita, that moment comes at 2,000,000 gold, when the coins in your pocket become decorative metal.
 
 ---
 
-### 🟣 SLOTH — *Hold ALT to phase through walls and scout*
+### 🟣 SLOTH — *Hold ALT to send your spirit out. It always comes home.*
 
-> *"The lazy man's shortcut runs through every wall — but the walls are still there."*
+> *"The lazy man walks through every wall and arrives exactly where he started."*
 
-Hold ALT. Your body stays behind. Your spirit drifts forward — one pixel per frame, ghosting through solid rock like a rumor through a monastery. You can see everything. You can touch nothing.
+Hold ALT. The world lets go of you. Your physics freeze, your velocity zeroes, your controls go dark. You drift with WASD — one pixel per frame — through stone, through steel, through everything. You can see it all. You can touch none of it.
 
-When you release ALT, your body teleports to wherever your spirit wandered. A free scout. A free reposition. Sounds broken, right?
-
-It is not.
+And here is the truth the lazy never admit: **when you release ALT, you snap back to where you began.** Not forward. *Back.* The journey was never a journey. It was a daydream with a leash. Sloth is a scouting tool — a free pair of eyes sent through the rock — not a free teleport. The body never left the couch.
 
 **Sloth is blocked in:** Holy Mountains (too holy), The Vault (too secure), Secret Rooms (too secret), Boss Areas (too real), Robot Factories (too mechanical), and Wizard Dens (wizards don't respect personal space).
 
-**Sloth is blocked when:** there's an item nearby (within 30 pixels — even ghosts can't resist shiny things), there's liquid within 15 pixels (water grounds the spirit), you're taking damage (pain anchors the soul), you click the mouse (the flesh remembers), you use a controller button (the flesh remembers harder), you drift more than 5 pixels from your last position due to collision (the world pushes back), or you get stuck in the ground for more than 135 frames (even the dead know when to give up).
+**Sloth snaps you home early when:** an item, heart, wand, chest, or tablet sits in the ring between 15 and 30 pixels of you (even ghosts get distracted by shiny things — though curiously, things *closer* than 15 pixels escape the spirit's notice), liquid lurks within 5–15 pixels (water grounds the soul), you've taken damage within the last ~2 seconds (pain anchors the flesh), you click any mouse button, you press any controller button, the world shoves your frozen body more than 5 pixels off its mark, or you stay wedged in solid ground for more than 135 frames — at which point even the dead know when to give up.
 
-During ghost mode, your controls are disabled. Your physics are frozen. Your velocity is zeroed. You are nothing but a camera drifting through stone. And when you come back, if the spot you chose turns out to be inside a wall? The system tries to push you out. If it can't, you stay where you are. No teleport. No mercy.
+If the spirit gets stuck in stone, it panics productively: drift speed climbs (up to 10 pixels per frame) until it claws free, and the system tries to push it out of solid matter. After every interruption there is a 15-frame cooldown, because even apathy needs to catch its breath.
 
-**The philosophy:** Sloth is the sin of those who believe they can bypass the world's rules by simply... not participating. And for a while, they're right. The ghost flies free. The walls mean nothing. But sloth always carries a hidden cost: the inability to act while drifting. You can see the treasure, but you can't pick it up. You can see the enemy, but you can't shoot. You are everywhere and nowhere, and when you snap back to your body, the world has not moved — but you have spent time you will never recover.
+**Not stackable.** You cannot be more absent than absent.
+
+**The philosophy:** Sloth is the sin of those who believe they can experience the world without participating in it. And they can — briefly. The ghost flies free. The walls mean nothing. But the cruelest part of sloth is not what it forbids; it is what it returns you to. You see the treasure. You see the exit. You see everything. And then you open your eyes on the same couch, in the same room, having spent time you will never recover — with nothing to show for it but a map in your head.
 
 ---
 
-### 🔴 WRATH — *Return all damage to your attackers — but rage leaves scars*
+### 🔴 WRATH — *The mirror strikes harder than the blow*
 
 > *"He who strikes back with fury will find that fury has a memory — carved into his own bones."*
 
-Every time you take damage, it reflects back to the attacker. 100% at base. Stack it, and it climbs to 200%, then 300%. Your enemies hurt themselves by hurting you. The math sounds beautiful.
+Every time you take damage and survive with more than 1 HP, the attacker takes it back. **100% at one stack. 200% at two. 300% at three.** And here is what the mirror does not advertise: the reflection is written **directly into the attacker's flesh** — it ignores their fire resistance, their armor, their everything. The mirror does not negotiate with hides.
 
-The math is a liar.
+The math sounds beautiful. The math is a liar.
 
-**Each time damage reflects, there is a chance your max HP decreases permanently.** Not your current HP — your *max* HP. The ceiling comes down. At 1 stack, the chance is 10%. At 2 stacks, 40%. At 3 stacks, 70%. You are almost certainly going to lose max HP every single time you get hit.
+**Each time the mirror fires, your max HP may decrease — permanently — by exactly the amount of damage you just took.** Not a percentage. Not a token fee. The full bill. Take a 100-damage hit, fail the roll, and 100 max HP is gone forever — your ceiling crashes down to meet your wound, and if your current HP now stands above the new ceiling, it is cut down to fit.
 
-The reflection also requires you to survive: if your HP drops to 1.0 or below, the mirror shatters. No reflection. Just death.
+The odds of scarring: **10%** at one stack. **40%** at two. **70%** at three. At three stacks you are not flipping a coin; you are signing a schedule.
 
-And there's a catch in the catch: the reflected damage carries the tag "wrath", which means it won't trigger other wrath reflections. No infinite loops. No crash-to-desktop justice. Just you, bleeding, and the enemy bleeding back, and the question of who runs out of blood first.
+The reflection requires you to be alive to hold the mirror: if a hit leaves you at 1 HP or less, nothing reflects. Just death. And reflected damage carries the tag *"wrath"*, so it can never trigger another reflection. No infinite loops. No crash-to-desktop justice. Just you, bleeding, and the enemy bleeding worse, and the question of whose skeleton runs out first.
 
 **Stackable up to 3x.** Because the author believes in escalation.
 
-**The philosophy:** Wrath is the only sin that promises justice and delivers it — at the price of self-destruction. The angry man does not defeat his enemies; he *becomes* them. Every reflected wound is a wound received. The scars of wrath are not metaphorical. They are numbers on a stat sheet that will never go back up. In Noita, where max HP is the only true currency, wrath is the most expensive loan you will ever take — and the interest rate is your own skeleton.
+**The philosophy:** Wrath is the only sin that promises justice and delivers it — at the price of self-demolition. The angry man does not defeat his enemies; he *becomes* the wound they gave him. In Noita, where max HP is the only true currency, wrath is a loan whose interest is charged in bone — and the bank always knows exactly how much you were hit for.
 
 ---
 
-### 🔵 PRIDE — *Untouchable in the air — but the ground remembers every debt*
+### 🔵 PRIDE — *Untouchable while you levitate — but the ground keeps a ledger*
 
 > *"The proud man flies and believes himself a god. The ground below keeps a ledger."*
 
-The moment you leave the ground — levitating, jumping, launched by an explosion — you become invincible. Not resistant. Not tough. **Invincible.** Your HP is set to max every frame. Damage cannot touch you. Death cannot find you. You are Icarus with working wings.
+Let us be precise about when pride takes hold, because pride is precise about you: **it begins only when you actively spend your levitation** — when the flight meter is draining and your feet are off the ground. A jump is not pride. Being flung by an explosion is not pride. Falling is definitely not pride. Pride is the *deliberate* act of rising above the world on your own power. Gravity respects intent.
 
-But Icarus always lands.
+While the wings burn, you are invincible. Not resistant — **invincible**. Every frame, your HP is rewritten to maximum. Damage cannot keep a grip on you.
 
-While airborne, every point of damage you *would* have taken is recorded. Not applied — *recorded*. A debt, written in invisible ink on the underside of your hitbox. The moment your feet touch solid ground and stay there for 5 consecutive frames, the debt comes due.
+But it keeps a record.
 
-If your pre-flight HP was 500, and you took 600 points of damage while flying, your HP upon landing is **-100**. You die. Instantly. The ground does not forgive. It does not forget. It simply... settles accounts.
+Every point of damage you *would* have taken is added to a debt — written in invisible ink on the underside of your hitbox. The moment your feet touch solid ground and stay there for **5 consecutive frames**, the debt comes due, all at once, against the HP you had *before* takeoff:
 
-If the debt exceeds your life, you die. If it doesn't, you survive with the remainder. There is no partial forgiveness. There is no payment plan. The ground is an accountant, and it balances its books to the penny.
+> **landing HP = pre-flight HP − everything you absorbed in the air.**
 
-State is tracked across save/load. Polymorph resets the debt. But if you're polymorphed mid-flight? The ground doesn't care what shape you are. It just wants what it's owed.
+If your pre-flight HP was 500 and you soaked 600 mid-air, you land at −100. You die. Instantly. The ground does not forgive. It does not forget. It settles accounts to the penny, then files the paperwork as a clean death.
 
-**The philosophy:** Pride is the sin that whispers: *you are untouchable.* And for as long as you stay above the world, it's true. But Noita is a game about gravity — literal and metaphorical. The higher you fly, the more damage you absorb without knowing it, and the harder the landing when you finally come down. Pride does not kill you in the air. Pride kills you on the ground, in the moment you realize you were never free — you were just borrowing time from a creditor who charges in blood.
+Note what this arithmetic refuses to notice: **healing done mid-flight.** The ledger only knows two numbers — what you took off with, and what you absorbed. Gold spent on healing while airborne (looking at you, Greed) is gold thrown into the sky.
+
+The debt survives save and load. Polymorph wipes the slate — transformation is the one bankruptcy the ground accepts.
+
+**Not stackable.** There is only one way to be above everything.
+
+**The philosophy:** Pride does not kill you in the air. Pride kills you on the ground, in the moment you realize you were never free — you were borrowing time from a creditor who charges in blood, and the loan was only ever offered to those arrogant enough to fly on purpose.
 
 ---
 
-### 🟢 GLUTTONY — *Devour the resistances of the slain*
+### 🟢 GLUTTONY — *You are what you eat. That is the problem.*
 
-> *"The glutton eats the world and calls it strength — until he eats something that disagrees with him."*
+> *"The glutton eats the world and becomes it — soft where the world was soft, hard where the world was hard."*
 
-When an enemy dies within 320 pixels of you, its resistances are yours. Fire resistance, explosion resistance, slice resistance — 11 damage types in all. You eat the dead and you grow stronger.
+When an enemy you've been near (within 320 pixels) dies, its body becomes a meal — and your flesh reshapes itself toward what the corpse was. Eleven damage types: melee, projectile, explosion, electricity, fire, ice, slice, physics, poison, radioactive, drill. Each one, your vulnerability drifts toward *theirs*.
 
-But gluttony is not selective.
+Now listen carefully, because this is where gluttony hides the knife.
 
-If the enemy had *higher* resistance than you in a given type, you gain the difference — up to 1.2 points per type. A feast. A gift.
+**Eat something tougher than you, and you toughen — by at most 0.4 per damage type.** A modest gift. A polite portion.
 
-If the enemy had *lower* resistance than you, you lose — up to 0.4 points per type. A stomach ache. A debt.
+**Eat something softer than you, and you soften — by as much as 1.2 per damage type.** Three times the serving. The table is tilted, and it is not tilted in your favor.
 
-The minimum resistance floor is 0.05. You cannot become immune. You can only become *more* or *less* vulnerable, one corpse at a time.
+That is the true shape of this feast: the strong meals nourish you a little, and the weak meals poison you a lot. Spend an evening slaughtering rats and you will rise from the table with the constitution of a rat. There is a floor — your toughness can never drop below 0.05 of a multiplier, so you cannot eat your way to immunity, only to indigestion.
 
-A GUI overlay shows exactly what you gained and lost after each kill. Because gluttony, unlike the other sins, is honest about what it takes.
+A GUI overlay appears after each meal and shows you exactly what the corpse did to you, number by number, gain and loss. Gluttony, unlike the other sins, is honest at the table — *after* you've already swallowed.
 
-**Not stackable.** You only need to eat once.
+**Not stackable.** You only need to be a glutton once.
 
-**The philosophy:** Gluttony is the sin of consumption without discernment. The glutton does not choose what he eats — he eats what is available. And in Noita, what is available is often toxic, explosive, or radioactive. Every enemy you kill is a meal, but not every meal is nourishing. The glutton grows strong by eating the strong, and weak by eating the weak. There is no way to know which is which until the corpse is already inside you.
+**The philosophy:** Gluttony is the sin of consumption without discernment. The glutton does not choose what he eats — he eats what is available, and what is available in Noita is mostly weak, twitching, and bad for you. The strong make you slightly stronger. The weak make you considerably weaker. And the dungeon serves far more of the weak. Every feast is a slow trade of your body for the bodies of lesser things — which is why the wise glutton learns the hardest discipline of all: walking away from a free meal.
 
 ---
 
@@ -129,50 +139,49 @@ A GUI overlay shows exactly what you gained and lost after each kill. Because gl
 
 > *"The envious man measures his own worth by the wounds others inflict — and wounds himself in the comparison."*
 
-When you are hit by an enemy with more HP than you, the damage is amplified by 20% per stack (up to 80% at 4 stacks). You suffer more when facing the powerful. The strong punish you for being weak.
+Every hit you take is re-measured against a single question: *does my attacker have more HP than I do, right now?*
 
-When you are hit by an enemy with less HP than you, the damage is *refunded* — healed back by 20% per stack (up to 80%). The weak cannot hurt you. Their attacks are absorbed by the sheer fact of your superiority.
+If they do — if you are the lesser creature in the exchange — the wound deepens by **20% per stack**, up to **+80%** at four stacks. The strong punish you for the crime of being weaker, and envy makes sure you feel the full sentence.
 
-But there is a knife hidden in this comparison: **the strong can kill you faster, and the weak cannot save you.** Envy does not make you stronger. It makes you more *sensitive* to the hierarchy of power. You feel every advantage and every disadvantage with amplified intensity.
+If they don't — if some lesser thing dared to strike upward — the insult is partially *refunded*: **20% per stack of the damage flows back as healing**, up to 80%. The weak cannot truly hurt you. Their attacks are absorbed by the sheer fact of your superiority.
 
-Damage from Envy, Wrath, and Pride is excluded from triggering Envy's effect. No self-referential loops. No perk-on-perk violence. The sins are siblings, not cannibals.
+The comparison is live. It is your current HP against their current HP, measured at the instant of the blow. Whittle a giant down below your own health bar and envy switches sides mid-fight — the tyrant becomes the lesser thing, and its blows start paying *you*.
 
-Fatal damage from Envy's amplified hit is caught: HP is set to 0.001, then a curse finishes the job. Clean death. No ghost states. No lingering bugs.
+Damage tagged by Envy, Wrath, or Pride is excluded from the calculation. No self-referential loops. No perk-on-perk violence. The sins are siblings, not cannibals. And if the amplified wound is the one that kills you, the bookkeeping is clean: HP to a hair above zero, then a curse closes the account. No ghost states. No lingering bugs.
 
 **Stackable up to 4x.** Because comparison is addictive.
 
-**The philosophy:** Envy is the only sin that does not change what you do — it changes what the world does to you. The envious man does not fight differently; he fights in a world that is *calibrated* against him. When the strong strike, it hurts more. When the weak strike, it hurts less. But the envious man never asks: *what if I stopped comparing?* The question does not occur to him. Comparison is not a choice for the envious — it is a lens, ground into the shape of every enemy's HP bar.
+**The philosophy:** Envy is the only sin that does not change what you do — it changes what the world does to you. The envious man does not fight differently; he fights in a world *calibrated* against him, where every enemy's health bar is a verdict on his own. He never asks: *what if I stopped comparing?* The question does not occur to him. Comparison is not a choice for the envious — it is a lens, ground into the shape of every HP bar he has ever stood beneath.
 
 ---
 
-### 🩷 LUST — *Your touch seduces — polymorph cannot claim you*
+### 🩷 LUST — *Your touch seduces — and what is once seduced may be seduced forever*
 
 > *"The lover reaches for everything and cannot be turned into something he is not."*
 
-Three gifts in one. Lust is generous. Lust is also very, very demanding.
+Three gifts in one. Lust is generous. Lust is also very, very persistent.
 
-**Touch of Charm:** Get within 14 pixels of an enemy whose current HP is lower than your max HP, and it becomes charmed — your ally for 10 seconds. It fights for you. It dies for you. It doesn't have a choice. Bosses and boss-tagged enemies are immune. Some things cannot be seduced.
+**Touch of Charm:** come within 14 pixels of an enemy whose current HP is lower than your max HP, and it is yours — charmed, fighting for you, dying for you, for **10 seconds**. It doesn't get a vote. And here is lust's quietest cruelty: the moment the charm fades, the enemy is eligible again. Stay close, and the seduction renews the instant it expires. There is no recovery period for the seduced — only for those who walk away. Bosses and the boss-tagged are immune; some things cannot be courted. The ledger of broken hearts is swept clean every 300 frames, because even love must be garbage-collected.
 
-**Polymorph Immunity:** You are protected from all polymorph effects — permanently, unconditionally. The game applies `PROTECTION_POLYMORPH` with infinite duration. If somehow you *do* get polymorphed (via a bypass or a mod interaction), the polymorph entity is executed after 60 frames. Cleanly. Brutally. You return to your original form by force.
+**Polymorph Immunity:** you are wrapped in `PROTECTION_POLYMORPH` with infinite duration — permanently, unconditionally, reapplied if anything strips it. And if some bypass or rogue mod transforms you anyway, the false shape is given **60 frames of grace** — and then executed. A million points of curse damage, delivered without ceremony. The form dies; you walk out of its corpse as yourself. Lust refuses, at the metaphysical level, to be anything other than what it is.
 
-**Polymorph Potion Consumption:** If a polymorph potion (regular or unstable) is within 12 pixels of you, you drink it. It doesn't polymorph you — it heals 1 HP and destroys the potion. Because for Lust, even transformation is just another form of consumption.
-
-Charm has a cooldown per enemy: once charmed, that specific enemy cannot be charmed again for another 10 seconds after the effect ends. Charm cooldowns are cleaned up every 300 frames to prevent memory bloat. Because even love must be garbage-collected.
+**Polymorph Potion Consumption:** any polymorph potion — regular or unstable — that drifts within 12 pixels of you is simply *consumed*. It does not transform you. It heals you 1 HP and ceases to exist. One whole hit point. For lust, even a bottled identity crisis is just another thing to swallow, and barely a snack at that.
 
 **Not stackable.** Lust is already too much at one.
 
-**The philosophy:** Lust is the sin of reaching. The lustful hand touches everything — and in touching, transforms. But Lust in this mod is not about desire without consequence. It is about desire *as* consequence. You charm the weak because you can. You resist transformation because you refuse to be anything other than yourself. You drink the polymorph potion because even a substance designed to change you is just another thing to consume. Lust does not corrupt. Lust *consumes*. And in consuming everything, it becomes the one thing that cannot be changed — which is either a superpower or a prison, depending on whether you wanted to change in the first place.
+**The philosophy:** Lust is the sin of reaching. The lustful hand touches everything — and in touching, claims. But the deepest truth of this sin is in the charm's rhythm: nothing lust takes is taken once. The weak are claimed, released, and claimed again, forever, for as long as you stand close enough to want them. Lust does not corrupt. Lust *consumes* — and in consuming everything, it becomes the one thing in the valley that cannot be changed. Which is either a superpower or a prison, depending on whether you ever wanted to be someone else.
 
 ---
 
 ## The Sins Speak to Each Other
 
-These perks were not designed in isolation. They were designed as a family — and like all families, they have boundaries.
+These perks were not designed in isolation. They were designed as a family — and like all families, they have boundaries, debts, and one pairing that should never be left alone in a room.
 
-- **Envy** does not amplify damage from **Wrath** or **Pride** reflections. The sins do not punish each other.
-- **Wrath** tags its reflected damage as "wrath" to prevent infinite loops. The sins know when to stop.
-- **Lust** excludes "lust"-tagged damage from its calculations. Even love has limits.
-- **Pride** tracks debt across polymorph boundaries. Even transformation does not erase what you owe.
+- **Envy** does not amplify damage tagged by **Wrath** or **Pride**. The sins do not punish each other.
+- **Wrath** tags its reflections as *"wrath"* so they can never reflect again. The sins know when to stop.
+- **Pride** keeps its debt through save and load, and forgives it only through polymorph. Even transformation has a price list.
+- **Pride and Greed despise each other.** Gold spent healing mid-flight is erased when the ledger settles — the ground only remembers your pre-flight HP. Fly poor or fly briefly.
+- **Wrath's mirror ignores resistance** — the reflection is carved straight into the attacker's HP. The sins fight dirty, but only outward.
 
 The sins are aware of each other. They cooperate. They restrain. They are seven voices in one skull, and they have agreed on a set of rules — because without rules, even sin becomes chaos, and chaos is not a sin. Chaos is just noise.
 
@@ -192,7 +201,8 @@ See [LICENSE](LICENSE) for details.
 
 ---
 
-*"Every sin is a prayer — to a god that answers by taking something away."*
+*"Every sin is a prayer — to a god that answers by taking something away. This README, at least, tells you what."*
+
 
 <a href="https://github.com/AbyssalAscendantAsperger/Darkhold/releases/latest">
 <picture>
