@@ -1,5 +1,7 @@
 local M = {}
 
+local signal_initialized = false
+
 local player_entity = nil
 
 local saved_x, saved_y, saved_rot, saved_sx, saved_sy = nil, nil, nil, nil, nil
@@ -81,6 +83,7 @@ local function reset_ghost_state()
 	end
 
 	is_holding = false
+	GlobalsSetValue("SINS_OMENS_SLOTH_PHASING", "0")
 	saved_x, saved_y, saved_rot, saved_sx, saved_sy = nil, nil, nil, nil, nil
 	last_set_x, last_set_y = nil, nil
 end
@@ -213,6 +216,11 @@ local function push_out_of_solid(x, y)
 end
 
 function M.OnWorldPostUpdate()
+	if not signal_initialized then
+		signal_initialized = true
+		GlobalsSetValue("SINS_OMENS_SLOTH_PHASING", "0")
+	end
+
 	local current_player = get_player_entity()
 
 	if current_player and player_entity and current_player ~= player_entity then
@@ -235,6 +243,7 @@ function M.OnWorldPostUpdate()
 		end
 
 		is_holding = false
+		GlobalsSetValue("SINS_OMENS_SLOTH_PHASING", "0")
 		player_entity = current_player
 		ghost_char_data = nil
 		ghost_old_dont_update = nil
@@ -340,6 +349,7 @@ function M.OnWorldPostUpdate()
 				saved_sx = sx
 				saved_sy = sy
 				is_holding = true
+				GlobalsSetValue("SINS_OMENS_SLOTH_PHASING", "1")
 				last_set_x, last_set_y = x, y
 				GamePrintImportant("SAVED", "")
 

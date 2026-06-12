@@ -42,14 +42,9 @@ local function ShieldFromPolymorph(ent)
 	if ok_n and n ~= nil and n > 0 then
 		return true
 	end
-	local ok, eff = pcall(GetGameEffectLoadTo, ent, "PROTECTION_POLYMORPH", false)
-	if ok and eff ~= nil and eff ~= 0 then
-		local comps = EntityGetComponentIncludingDisabled(eff, "GameEffectComponent")
-		if comps then
-			for _, c in ipairs(comps) do
-				pcall(ComponentSetValue2, c, "frames", -1)
-			end
-		end
+	local ok, eff_comp, eff_entity = pcall(GetGameEffectLoadTo, ent, "PROTECTION_POLYMORPH", false)
+	if ok and eff_comp ~= nil and eff_comp ~= 0 then
+		pcall(ComponentSetValue2, eff_comp, "frames", -1)
 		return true
 	end
 	return false
@@ -92,14 +87,9 @@ local function CharmNearbyEnemies()
 			and (charm_cooldown[e] == nil or frame > charm_cooldown[e]) then
 			local ehp = GetEnemyHP(e)
 			if ehp ~= nil and ehp < my_max_hp then
-				local ok, eff = pcall(GetGameEffectLoadTo, e, "CHARM", true)
-				if ok and eff ~= nil and eff ~= 0 then
-					local comps = EntityGetComponentIncludingDisabled(eff, "GameEffectComponent")
-					if comps then
-						for _, c in ipairs(comps) do
-							pcall(ComponentSetValue2, c, "frames", CHARM_FRAMES)
-						end
-					end
+				local ok, eff_comp, eff_entity = pcall(GetGameEffectLoadTo, e, "CHARM", true)
+				if ok and eff_comp ~= nil and eff_comp ~= 0 then
+					pcall(ComponentSetValue2, eff_comp, "frames", CHARM_FRAMES)
 					charm_cooldown[e] = frame + CHARM_FRAMES
 				end
 			end
@@ -193,6 +183,11 @@ function M.OnWorldPostUpdate()
 	player_entity = ent
 
 	ShieldFromPolymorph(player_entity)
+
+	if GlobalsGetValue("SINS_OMENS_SLOTH_PHASING", "0") == "1" then
+		return
+	end
+
 	CharmNearbyEnemies()
 	DrinkPolymorphPotions()
 end
