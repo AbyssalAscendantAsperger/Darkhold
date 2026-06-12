@@ -89,9 +89,9 @@ local function SetHP(dmg_comp, new_hp)
 end
 
 local function TryHeal(dmg_comp, target_hp)
-	local old_hp = GetValue(dmg_comp, "hp")
+	local old_hp = tonumber(GetValue(dmg_comp, "hp")) or 0
 	SetHP(dmg_comp, target_hp)
-	local new_hp = GetValue(dmg_comp, "hp")
+	local new_hp = tonumber(GetValue(dmg_comp, "hp")) or 0
 	local expected_gain = target_hp - old_hp
 	local actual_gain = new_hp - old_hp
 	if actual_gain < expected_gain * 0.5 then
@@ -220,9 +220,9 @@ function M.OnWorldPostUpdate()
 	if player_entity then
 		local _, _, dmg_comp = GetCurrentHP(player_entity)
 		if dmg_comp then
-			local current_hp = GetValue(dmg_comp, "hp")
+			local current_hp = tonumber(GetValue(dmg_comp, "hp"))
 			local frame = GameGetFrameNum()
-			if previous_hp ~= nil and current_hp < previous_hp - 0.001 then
+			if previous_hp ~= nil and current_hp ~= nil and current_hp < previous_hp - 0.001 then
 				last_damage_frame = frame
 				stable_hp_ticks = 0
 			end

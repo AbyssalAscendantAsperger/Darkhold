@@ -6,6 +6,10 @@ perk_sloth,SLOTH,,,,,,,,,,,,,
 perkdesc_sloth,Hold ALT to phase through walls and scout,,,,,,,,,,,,,
 perk_wrath,WRATH,,,,,,,,,,,,,
 perkdesc_wrath,Return all damage to your attackers - but rage leaves scars,,,,,,,,,,,,,
+perk_pride,PRIDE,,,,,,,,,,,,,
+perkdesc_pride,Untouchable in the air - but the ground remembers every debt,,,,,,,,,,,,,
+perk_gluttony,GLUTTONY,,,,,,,,,,,,,
+perkdesc_gluttony,Devour the resistances of the slain,,,,,,,,,,,,,
 ]]
 translations = translations:gsub("\r", "")
 ModTextFileSetContent("data/translations/common.csv", translations)
@@ -17,6 +21,8 @@ local PERK_MODULES = {
 	dofile_once("mods/Sins-and-Omens/files/scripts/greed.lua"),
 	dofile_once("mods/Sins-and-Omens/files/scripts/sloth.lua"),
 	dofile_once("mods/Sins-and-Omens/files/scripts/wrath.lua"),
+	dofile_once("mods/Sins-and-Omens/files/scripts/pride.lua"),
+	dofile_once("mods/Sins-and-Omens/files/scripts/gluttony.lua"),
 }
 
 function OnPlayerSpawned(player_entity)

@@ -41,6 +41,44 @@ table.insert(perk_list, {
 })
 
 table.insert(perk_list, {
+	id = "pride",
+	ui_name = "$perk_pride",
+	ui_description = "$perkdesc_pride",
+	ui_icon = "mods/Sins-and-Omens/files/perks/pride_icon.png",
+	perk_icon = "mods/Sins-and-Omens/files/perks/pride_icon.png",
+	usable_by_enemies = false,
+	not_in_default_perk_pool = false,
+	stackable = 0,
+	func = function(entity_perk_item, entity_who_picked, item_name)
+		GameAddFlagRun("pride_perk")
+	end,
+	func_remove = nil,
+	deprecated = nil,
+	author = "intrepid",
+	local_content = true,
+	default = true,
+})
+
+table.insert(perk_list, {
+	id = "gluttony",
+	ui_name = "$perk_gluttony",
+	ui_description = "$perkdesc_gluttony",
+	ui_icon = "mods/Sins-and-Omens/files/perks/gluttony_icon.png",
+	perk_icon = "mods/Sins-and-Omens/files/perks/gluttony_icon.png",
+	usable_by_enemies = false,
+	not_in_default_perk_pool = false,
+	stackable = 0,
+	func = function(entity_perk_item, entity_who_picked, item_name)
+		GameAddFlagRun("gluttony_perk")
+	end,
+	func_remove = nil,
+	deprecated = nil,
+	author = "intrepid",
+	local_content = true,
+	default = true,
+})
+
+table.insert(perk_list, {
 	id = "wrath",
 	ui_name = "$perk_wrath",
 	ui_description = "$perkdesc_wrath",
