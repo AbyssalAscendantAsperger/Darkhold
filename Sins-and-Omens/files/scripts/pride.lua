@@ -106,17 +106,13 @@ function M.OnWorldPostUpdate()
 			ground_frames = 0
 		end
 
-		-- Anti-exploit (spider legs / wall-cling / hover):
-		-- levitation RECHARGING while airborne means the player is standing
-		-- on something the game doesn't call ground (walls). Treat as landed.
+
 		if prev_fly_time ~= nil and fly_time > prev_fly_time + 0.0001 then
 			recharge_frames = recharge_frames + 1
 		else
 			recharge_frames = 0
 		end
 
-		-- levitation frozen (not draining, not on ground) for too long:
-		-- perched/hovering by other means. The fall is only delayed.
 		if prev_fly_time ~= nil and math.abs(fly_time - prev_fly_time) <= 0.0001 then
 			stagnant_frames = stagnant_frames + 1
 		else
