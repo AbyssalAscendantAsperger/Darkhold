@@ -10,6 +10,10 @@ perk_pride,PRIDE,,,,,,,,,,,,,
 perkdesc_pride,Untouchable in the air - but the ground remembers every debt,,,,,,,,,,,,,
 perk_gluttony,GLUTTONY,,,,,,,,,,,,,
 perkdesc_gluttony,Devour the resistances of the slain,,,,,,,,,,,,,
+perk_envy,ENVY,,,,,,,,,,,,,
+perkdesc_envy,Suffer before the strong - thrive against the weak,,,,,,,,,,,,,
+perk_lust,LUST,,,,,,,,,,,,,
+perkdesc_lust,Your touch seduces - polymorph cannot claim you,,,,,,,,,,,,,
 ]]
 translations = translations:gsub("\r", "")
 ModTextFileSetContent("data/translations/common.csv", translations)
@@ -23,6 +27,8 @@ local PERK_MODULES = {
 	dofile_once("mods/Sins-and-Omens/files/scripts/wrath.lua"),
 	dofile_once("mods/Sins-and-Omens/files/scripts/pride.lua"),
 	dofile_once("mods/Sins-and-Omens/files/scripts/gluttony.lua"),
+	dofile_once("mods/Sins-and-Omens/files/scripts/envy.lua"),
+	dofile_once("mods/Sins-and-Omens/files/scripts/lust.lua"),
 }
 
 function OnPlayerSpawned(player_entity)

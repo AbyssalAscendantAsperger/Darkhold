@@ -79,6 +79,48 @@ table.insert(perk_list, {
 })
 
 table.insert(perk_list, {
+	id = "envy",
+	ui_name = "$perk_envy",
+	ui_description = "$perkdesc_envy",
+	ui_icon = "mods/Sins-and-Omens/files/perks/envy_icon.png",
+	perk_icon = "mods/Sins-and-Omens/files/perks/envy_icon.png",
+	usable_by_enemies = false,
+	not_in_default_perk_pool = false,
+	stackable = STACKABLE_YES,
+	stackable_maximum = 4,
+	func = function(entity_perk_item, entity_who_picked, item_name)
+		GameAddFlagRun("envy_perk")
+		local stacks = tonumber(GlobalsGetValue("SINS_OMENS_ENVY_STACKS", "0")) or 0
+		stacks = math.min(stacks + 1, 4)
+		GlobalsSetValue("SINS_OMENS_ENVY_STACKS", tostring(stacks))
+	end,
+	func_remove = nil,
+	deprecated = nil,
+	author = "intrepid",
+	local_content = true,
+	default = true,
+})
+
+table.insert(perk_list, {
+	id = "lust",
+	ui_name = "$perk_lust",
+	ui_description = "$perkdesc_lust",
+	ui_icon = "mods/Sins-and-Omens/files/perks/lust_icon.png",
+	perk_icon = "mods/Sins-and-Omens/files/perks/lust_icon.png",
+	usable_by_enemies = false,
+	not_in_default_perk_pool = false,
+	stackable = 0,
+	func = function(entity_perk_item, entity_who_picked, item_name)
+		GameAddFlagRun("lust_perk")
+	end,
+	func_remove = nil,
+	deprecated = nil,
+	author = "intrepid",
+	local_content = true,
+	default = true,
+})
+
+table.insert(perk_list, {
 	id = "wrath",
 	ui_name = "$perk_wrath",
 	ui_description = "$perkdesc_wrath",
