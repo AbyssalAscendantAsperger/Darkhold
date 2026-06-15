@@ -9,6 +9,8 @@ table.insert(perk_list, {
 	stackable = STACKABLE_YES,
 	stackable_maximum = 10,
 	func = function(entity_perk_item, entity_who_picked, item_name)
+		if not entity_perk_item or entity_perk_item == 0 then return end
+		if not EntityGetIsAlive(entity_perk_item) then return end
 		GameAddFlagRun("greed_perk")
 		local stacks = tonumber(GlobalsGetValue("SINS_OMENS_GREED_STACKS", "0")) or 0
 		stacks = math.min(stacks + 1, 10)
@@ -31,6 +33,8 @@ table.insert(perk_list, {
 	not_in_default_perk_pool = false,
 	stackable = 0,
 	func = function(entity_perk_item, entity_who_picked, item_name)
+		if not entity_perk_item or entity_perk_item == 0 then return end
+		if not EntityGetIsAlive(entity_perk_item) then return end
 		GameAddFlagRun("sloth_perk")
 	end,
 	func_remove = nil,
@@ -50,6 +54,8 @@ table.insert(perk_list, {
 	not_in_default_perk_pool = false,
 	stackable = 0,
 	func = function(entity_perk_item, entity_who_picked, item_name)
+		if not entity_perk_item or entity_perk_item == 0 then return end
+		if not EntityGetIsAlive(entity_perk_item) then return end
 		GameAddFlagRun("pride_perk")
 	end,
 	func_remove = nil,
@@ -69,6 +75,8 @@ table.insert(perk_list, {
 	not_in_default_perk_pool = false,
 	stackable = 0,
 	func = function(entity_perk_item, entity_who_picked, item_name)
+		if not entity_perk_item or entity_perk_item == 0 then return end
+		if not EntityGetIsAlive(entity_perk_item) then return end
 		GameAddFlagRun("gluttony_perk")
 	end,
 	func_remove = nil,
@@ -89,6 +97,8 @@ table.insert(perk_list, {
 	stackable = STACKABLE_YES,
 	stackable_maximum = 4,
 	func = function(entity_perk_item, entity_who_picked, item_name)
+		if not entity_perk_item or entity_perk_item == 0 then return end
+		if not EntityGetIsAlive(entity_perk_item) then return end
 		GameAddFlagRun("envy_perk")
 		local stacks = tonumber(GlobalsGetValue("SINS_OMENS_ENVY_STACKS", "0")) or 0
 		stacks = math.min(stacks + 1, 4)
@@ -111,6 +121,8 @@ table.insert(perk_list, {
 	not_in_default_perk_pool = false,
 	stackable = 0,
 	func = function(entity_perk_item, entity_who_picked, item_name)
+		if not entity_perk_item or entity_perk_item == 0 then return end
+		if not EntityGetIsAlive(entity_perk_item) then return end
 		GameAddFlagRun("lust_perk")
 	end,
 	func_remove = nil,
@@ -131,6 +143,8 @@ table.insert(perk_list, {
 	stackable = STACKABLE_YES,
 	stackable_maximum = 3,
 	func = function(entity_perk_item, entity_who_picked, item_name)
+		if not entity_perk_item or entity_perk_item == 0 then return end
+		if not EntityGetIsAlive(entity_perk_item) then return end
 		GameAddFlagRun("wrath_perk")
 		local stacks = tonumber(GlobalsGetValue("SINS_OMENS_WRATH_STACKS", "0")) or 0
 		stacks = math.min(stacks + 1, 3)
