@@ -1,0 +1,37 @@
+# ===== VSCode / IDE =====
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ===== Lua Language Server =====
+.luarc.json
+*.luarc.json
+
+# ===== Noita Engine & Cache =====
+*.wkw
+*.wld
+*.log
+logs/
+
+# ===== Steam Workshop Metadata =====
+workshop/
+steam_appid.txt
+
+# ===== Windows System Files =====
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ===== Build / Temp Files =====
+*.bak
+*.tmp
+*.temp
+cache/
+tmp/
+
+# ===== Personal / Local Config =====
+*.local
+.env
+.settings.local
