@@ -4,8 +4,6 @@
 *.swo
 *~
 
-.luarc.json
-*.luarc.json
 
 *.wkw
 *.wld
